@@ -6,6 +6,12 @@ Test automation for Together networks.
 * Gherkin Syntax - Cucumber
 * [Allure Reporter](https://docs.qameta.io/allure/) is a WebdriverIO reporter plugin
 
+###Preparing
+We need to install global latest version nodejs 
+https://nodejs.org/uk/download/
+and java
+https://www.java.com/ru/download/windows-64bit.jsp
+
 ### Deploying 
 
 Now we need to install. Do that by running:

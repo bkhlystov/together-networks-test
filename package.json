@@ -1,5 +1,5 @@
 {
-  "name": "together networks-tests",
+  "name": "together-networks-tests",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "test.mobile.site": "node_modules\\.bin\\wdio configs\\wdio.conf.mobile.parallel.js --suite mobile",
     "Show Allure Report": "allure generate allure-results --clean && allure open"
   },
-  "author": "bohdan",
+  "author": "bkhlystov",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.5.5",
