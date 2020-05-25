@@ -1,0 +1,22 @@
+# mac files
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+.tmp/*
+.idea/*
+report/*
+allure-results/*
+allure-report/*
+helpers/mail-cache/*
