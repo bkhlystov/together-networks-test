@@ -47,8 +47,7 @@ exports.config = {
     screenshotPath: './report/screenshots/',
     bail: 0,
     // Default base url
-    //baseUrl: 'https://wholesale.bullionexchanges.com',
-    baseUrl: 'https://s2u.stage.bx.4ib.co',
+    baseUrl: '//www.way2automation.com/',
     // Default timeout for all waitForXXX commands.
     //waitforTimeout: 20000,
     //connectionRetryTimeout: 90000,

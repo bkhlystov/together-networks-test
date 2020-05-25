@@ -1,7 +1,14 @@
+/**
+ * Method make Ajax request
+ * @param url String
+ * @param method String (GET || POST || PUT || DELETE)
+ * @param params Object ({key: value})
+ * @return Object
+ */
 module.exports = (url, method, params) => {
 	let _method = method || 'GET';
-	let _params = params ? formatParams( params ) : '';
-	let _url = _params ? url + "?" + _params : url;
+	let _params = (method === 'GET' && params && typeof params === 'object' ) ? formatParams( params ) : params;
+	let _url = (_params && typeof _params !== 'object') ? url + "?" + _params : url;
 
 	function formatParams( params ){
 		return "?" + Object.keys(params)
@@ -28,6 +35,12 @@ module.exports = (url, method, params) => {
 			case 'POST':
 				http.send(params);
 				break;
+            case 'PUT':
+                http.send(params);
+                break;
+            case 'DELETE':
+                http.send(null);
+                break;
 		}
 	}, _url, _method, _params);
 

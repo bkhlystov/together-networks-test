@@ -3,6 +3,7 @@ const assert = require('assert');
 export default class Test {
 	constructor() {
 		this.storage = {};
+        this.TIMEOUT = 30000;
 	}
 
     click( element ){
