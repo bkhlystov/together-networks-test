@@ -13,8 +13,8 @@ module.exports = {
             password: "98475fyhd3578thfd34"
         },
 		"Test User": {
-            name: "Testy Fakeson",
-            email: "test-email@exemple.com"
+            username: "Fakeson",
+            password: "Qwertyu123456"
 		}
     },
 	store: {
