@@ -75,3 +75,8 @@ Feature: Desktop / Pixabay Docs
 	Scenario: Check Pixabay Docs Api Links
 		Then I check api "https://pixabay.com/api/"
 		Then I check api "https://pixabay.com/api/videos/"
+
+	Scenario: Check Humburger After Resize Screen Size
+		When I have a screen that is 800 by 600 pixels
+		Then I'm waiting for 100ms
+		Then I expect that element "#header_inner .icon_mobile_menu" is displayed

@@ -4,8 +4,8 @@
  * @param  {String}   screenHeight The height of the window to resize to
  */
 module.exports = (screenWidth, screenHeight) => {
-    browser.windowHandleSize({
-        width: parseInt(screenWidth, 10),
-        height: parseInt(screenHeight, 10),
-    });
+    const width = parseInt(screenWidth, 10);
+    const height = parseInt(screenHeight, 10);
+
+    browser.setWindowSize(width, height);
 };
