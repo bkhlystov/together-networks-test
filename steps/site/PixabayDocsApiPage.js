@@ -9,4 +9,11 @@ When(
     }
 );
 
+Then(
+    /^I check api "([^"]*)?"$/,
+    (url) => {
+        PixabayDocsApi.checkApiByUrl(url);
+    }
+);
+
 

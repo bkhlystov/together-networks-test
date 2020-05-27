@@ -18,6 +18,26 @@ class PixabayDocsApi extends Test {
 
         $(css_selector).waitForDisplayed(this.TIMEOUT);
 	}
+
+    checkApiByUrl(url) {
+        const api_key = configData.store.pixabay.api_key;
+        const link = `${url}?key=${api_key}`;
+
+        const getHints = url => {
+            return makeAjax(url, 'GET');
+        };
+
+        const response_data = getHints(link);
+
+        if(response_data && Object.keys(response_data).length) {
+            if(response_data.hits.length === 0) {
+                console.error(`Empty response data hits length in api ${link}`);
+            }
+
+        } else {
+            console.error(`Can't get response data in api ${link}`);
+        }
+    }
 }
 
 export default new PixabayDocsApi();

@@ -1,17 +1,17 @@
 Feature: Desktop / Pixabay Docs
 
+##	Working only after check recapcha
 #	Scenario: Login to Pixabay
 #		When I visit website "//pixabay.com/accounts/login/" and waite for element "#login_form"
 #		Then I'm waiting for 1000ms
 #		Then I expect that element "#login_form" is displayed
 #
-##		Working only with recapcha
-##		When I fill form "#login_form":
-##			| username    | <users["Test User Wrong"].username>    |
-##			| password | <users["Test User Wrong"].password> |
-##		Then I click on the button "#login_form input[type='submit']"
-##		Then I'm waiting for 5000ms
-##		Then I expect that element "#login_form .errorlist" is displayed
+#		When I fill form "#login_form":
+#			| username    | <users["Test User Wrong"].username>    |
+#			| password | <users["Test User Wrong"].password> |
+#		Then I click on the button "#login_form input[type='submit']"
+#		Then I'm waiting for 5000ms
+#		Then I expect that element "#login_form .errorlist" is displayed
 #
 #		When I fill form "#login_form":
 #			| username    | <users["Test User Correct"].username>    |
@@ -71,3 +71,7 @@ Feature: Desktop / Pixabay Docs
 		Then I'm waiting for 100ms
 		Then I expect that element "#api_support" is displayed
 		Then I expect that element "#api_support" contains the text "Support"
+
+	Scenario: Check Pixabay Docs Api Links
+		Then I check api "https://pixabay.com/api/"
+		Then I check api "https://pixabay.com/api/videos/"
