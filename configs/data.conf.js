@@ -1,23 +1,18 @@
 module.exports = {
     users: {
-        "Wholesale Customer": {
-            email: "bx-s2u-qa+wholesaler@4ib.com",
-            password: "8475thd9834th3b76rh"
-        },
-        "General Customer": {
-            email: "bx-s2u-qa+general+customer@4ib.com",
-            password: "4857tyjd875th2d385td"
-        },
-        "CRM User": {
-            email: "bx-s2u-qa+crm@4ib.com",
-            password: "98475fyhd3578thfd34"
-        },
-		"Test User": {
+		"Test User Correct": {
             username: "Fakeson",
             password: "Qwertyu123456"
-		}
+		},
+        "Test User Wrong": {
+            username: "Fakeson1234",
+            password: "Qwertyu"
+        }
     },
 	store: {
+    	pixabay: {
+            api_key: '16763046-e7c3f5592a7f6e16adc46eaeb',
+		},
     	user: {
             name: "Testy Fakeson",
             email: "test-email@exemple.com",

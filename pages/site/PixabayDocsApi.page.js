@@ -12,11 +12,11 @@ class PixabayDocsApi extends Test {
 
     logInForm() { return '#login_form'; };
 
-    visitPixabayLogin(url) {
-    	const log_in_form = this.logInForm();
+    visitPixabayLogin(url, css_selector) {
+
         browser.url(url);
 
-        $(log_in_form).waitForDisplayed(this.TIMEOUT);
+        $(css_selector).waitForDisplayed(this.TIMEOUT);
 	}
 }
 
