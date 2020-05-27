@@ -11,9 +11,18 @@ module.exports = {
         "CRM User": {
             email: "bx-s2u-qa+crm@4ib.com",
             password: "98475fyhd3578thfd34"
-        }
+        },
+		"Test User": {
+            name: "Testy Fakeson",
+            email: "test-email@exemple.com"
+		}
     },
 	store: {
+    	user: {
+            name: "Testy Fakeson",
+            email: "test-email@exemple.com",
+            type_console: "xbox"
+		},
 		customer: {
 			wholesale_customer: {
 				fname: 'Wholesaler',

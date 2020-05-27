@@ -4,6 +4,7 @@ export default class Test {
 	constructor() {
 		this.storage = {};
         this.TIMEOUT = 30000;
+        this.TICK = 500;
 	}
 
     click( element ){

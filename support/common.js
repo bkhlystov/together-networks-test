@@ -38,7 +38,7 @@ module.exports = {
     tryToGetConfigData: function(string){
         let values = string.match(/<([^<>]+)>/i);
         if( values && values[1] ){
-            try { string = eval(`global.configData.${values[1]}`) } catch {};
+            try { string = eval(`global.configData.${values[1]}`) } catch (e){};
         }
         return string;
     },
