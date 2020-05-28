@@ -20,7 +20,6 @@ module.exports = (url, method, body) => {
 
 	// Execute code which takes a long time
 	const result = browser.executeAsync(function(url, method, body, done) {
-		// console.log('url, method, body, done ', url, method, body, done);
 		let http = new XMLHttpRequest();
 
 		http.onload = () => {
@@ -29,7 +28,7 @@ module.exports = (url, method, body) => {
 
 		http.open(method, url, true);
 
-
+		const json_body = (body && Object.keys(body).length) ? JSON.stringify(body) : null;
 
 		switch (method) {
 			case 'GET':
@@ -37,12 +36,11 @@ module.exports = (url, method, body) => {
 				break;
 			case 'POST':
                 http.setRequestHeader("content-type", "application/json");
-				console.log('body ', body);
-				http.send(body);
+				http.send(json_body);
 				break;
             case 'PUT':
                 http.setRequestHeader("content-type", "application/json");
-                http.send(body);
+                http.send(json_body);
                 break;
             case 'DELETE':
                 http.send(null);

@@ -1,5 +1,7 @@
-Feature: Desktop / Flacky Test
+Feature: Desktop / Flacky API Test
 
-  Scenario: Create new user
-    Then I "create" user database by "http://localhost:8081/users"
-
+  Scenario: CRUD oparations with user by api
+    Then I "create" user in database by url "http://localhost:8081/users"
+    Then I "get" user from database by url "http://localhost:8081/users"
+    Then I "update" user in database by url "http://localhost:8081/users"
+    Then I "delete" user from database by url "http://localhost:8081/users"

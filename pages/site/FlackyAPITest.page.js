@@ -1,6 +1,5 @@
 import Test from '../test';
 import makeAjax from '../../support/action/makeAjax.js';
-import decimalAdjust from '../../support/action/decimalAdjust.js';
 
 // More details about page object you can read in this guide: https://webdriver.io/docs/pageobjects.html
 
@@ -8,6 +7,47 @@ class FlackyAPITest extends Test {
 	constructor() {
 		super();
 	}
+
+	saveCreatedUserIdFromResponse(response) {
+        const is_created_user = (response && Object.keys(response).length && response.id) ? true : false;
+        expect(is_created_user).to.equal(
+            true,
+            "Expect users is not created"
+        );
+
+	    this.storage['user_id'] = response.id;
+    }
+
+    checkCreatedUserInResponseList(users_list) {
+
+        const is_user_in_list = (users_list && users_list.length) ? users_list.some(item => {
+            return item.id === this.storage['user_id'];
+        }) : false;
+
+        expect(is_user_in_list).to.equal(
+            true,
+            "There is no created user response array"
+        );
+    }
+
+    checkUpdatedUserInResponse(response) {
+	    console.log('response.id ', response.id);
+	    const id = (response && response.id) ? response.id : '';
+
+        expect(this.storage['user_id'] === id).to.equal(
+            true,
+            "There is no updated user id in response"
+        );
+    }
+
+    checkDeletedUserInResponse(response) {
+        const id = (response && response.id) ? response.id : '';
+
+        expect(this.storage['user_id'] === id).to.equal(
+            true,
+            "There is no deleted user id in response"
+        );
+    }
 
 	apiTest(action, url) {
 		let users = null;
@@ -22,30 +62,21 @@ class FlackyAPITest extends Test {
             email: configData.store.updated_user.email
         };
 
-        const getUsers = (method, url, params) => {
-
-            return makeAjax(url, method, params);
-        };
-
+        browser.url(url);
 
 
         switch (action) {
             case 'create':
-                users = getUsers('POST', url, user);
-                console.log(users);
-
+                this.saveCreatedUserIdFromResponse(makeAjax( url, 'POST', user));
                 break;
             case 'get':
-                users = getUsers('GET', url);
-                console.log(users);
+                this.checkCreatedUserInResponseList(makeAjax(url, 'GET'));
                 break;
             case 'update':
-                users = getUsers('PUT', url, updated_user);
-                console.log(users);
+                this.checkUpdatedUserInResponse(makeAjax( `${url}/${this.storage['user_id']}`, 'PUT', updated_user));
                 break;
             case 'delete':
-                users = getUsers('DELETE', url);
-                console.log(users);
+                this.checkDeletedUserInResponse(makeAjax(`${url}/${this.storage['user_id']}`, 'DELETE'));
                 break;
         }
 	}
