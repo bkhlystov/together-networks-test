@@ -5,21 +5,22 @@
  * @param params Object ({key: value})
  * @return Object
  */
-module.exports = (url, method, params) => {
+module.exports = (url, method, body) => {
 	let _method = method || 'GET';
-	let _params = (method === 'GET' && params && typeof params === 'object' ) ? formatParams( params ) : params;
-	let _url = (_params && typeof _params !== 'object') ? url + "?" + _params : url;
+	let _body = (_method === 'GET') ? formatParams( body ) : JSON.stringify(body);
+	let _url = (_body && _method === 'GET') ? url + "?" + _body : url;
 
-	function formatParams( params ){
-		return "?" + Object.keys(params)
+	function formatParams( body ){
+		return "?" + Object.keys(body)
 			.map(key => {
-				return key+"="+encodeURIComponent(params[key]);
+				return key+"="+encodeURIComponent(body[key]);
 			})
 			.join("&");
 	}
 
 	// Execute code which takes a long time
-	const result = browser.executeAsync((url, method, params, done) => {
+	const result = browser.executeAsync(function(url, method, body, done) {
+		// console.log('url, method, body, done ', url, method, body, done);
 		let http = new XMLHttpRequest();
 
 		http.onload = () => {
@@ -28,21 +29,24 @@ module.exports = (url, method, params) => {
 
 		http.open(method, url, true);
 
+        http.setRequestHeader("content-type", "application/json");
+
 		switch (method) {
 			case 'GET':
 				http.send(null);
 				break;
 			case 'POST':
-				http.send(params);
+				console.log('body ', body);
+				http.send(body);
 				break;
             case 'PUT':
-                http.send(params);
+                http.send(body);
                 break;
             case 'DELETE':
                 http.send(null);
                 break;
 		}
-	}, _url, _method, _params);
+	}, _url, _method, _body);
 
 	return JSON.parse(result);
 };

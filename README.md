@@ -42,7 +42,12 @@ npm run test.site
 
 Run single test
 ```
+For Windows
 node_modules\\.bin\\wdio configs\\wdio.conf.parallel.js --spec ./features/desktop/Exemple.feature
+```
+```
+For Linux
+node_modules//.bin//wdio configs//wdio.conf.parallel.js --spec ./features/desktop/FlackyAPITest.feature
 ```
 
 ### Configuration files

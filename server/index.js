@@ -6,6 +6,9 @@
 const express = require('express'); // оснастка веб сервера
 const app = express();
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Set database connection credentials
 const config = {
@@ -24,7 +27,7 @@ const server = app.listen(8081, function () {
     const host = server.address().address;
     const port = server.address().port;
 
-    console.log("server allow to url example http://localhost:", host, port, '/users');
+    console.log(`api allow to url http://localhost:${port}/users`);
 });
 
 // Display all users
@@ -52,7 +55,10 @@ app.post('/users', (request, response) => {
     pool.query('INSERT INTO users SET ?', request.body, (error, result) => {
         if (error) throw error;
 
-        response.status(201).send(`User added with ID: ${result.insertId}`);
+        response.status(201).send({
+            'Message': `User added with ID: ${result.insertId}`,
+            'id': result.insertId
+        });
     });
 });
 
@@ -62,8 +68,10 @@ app.put('/users/:id', (request, response) => {
 
     pool.query('UPDATE users SET ? WHERE id = ?', [request.body, id], (error, result) => {
         if (error) throw error;
-
-        response.send('User updated successfully.');
+        response.send({
+            'Message': 'User updated successfully.',
+            'id': id
+        });
     });
 });
 
@@ -73,7 +81,9 @@ app.delete('/users/:id', (request, response) => {
 
     pool.query('DELETE FROM users WHERE id = ?', id, (error, result) => {
         if (error) throw error;
-
-        response.send('User deleted.');
+        response.send({
+            'Message': 'User deleted.',
+            'id': id
+        });
     });
 });

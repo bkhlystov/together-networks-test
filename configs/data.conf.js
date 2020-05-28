@@ -18,6 +18,10 @@ module.exports = {
             email: "test-email@exemple.com",
             type_console: "xbox"
 		},
+		updated_user: {
+            name: "John Dir",
+            email: "test-email@exemple.com",
+		},
 		customer: {
 			wholesale_customer: {
 				fname: 'Wholesaler',
