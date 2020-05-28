@@ -7,10 +7,11 @@ Test automation for Together networks.
 * [Allure Reporter](https://docs.qameta.io/allure/) is a WebdriverIO reporter plugin
 
 ###Preparing
-We need to install global latest version nodejs 
-https://nodejs.org/uk/download/
-and java
-https://www.java.com/ru/download/windows-64bit.jsp
+We need to install global:
+* nodejs: https://nodejs.org/uk/download/
+* java: https://www.java.com/ru/download/windows-64bit.jsp
+* mysql: sudo apt install mysql-server
+
 
 ### Deploying 
 
@@ -61,3 +62,18 @@ allure generate report/allure-results --clean && allure open
 This will generate a report (by default in `./allure-report` directory), and open it in your browser.
 
 For more details about Allure reporter plugin: https://webdriver.io/docs/allure-reporter.html
+
+### Start nodejs webserver
+
+```
+npm run server
+
+```
+###API
+Display all users (GET), (POST) Add a new user: 
+http://localhost:8081/users
+
+Display a single user by ID (GET), Update an existing user (PUT), Delete a user (DELETE)
+http://localhost:8081/users/:id
+
+

@@ -1,5 +1,7 @@
 /**
  * Created by bohdan on 27.05.2020.
+ * More details about creating webserver: https://code.tutsplus.com/ru/tutorials/code-your-first-api-with-nodejs-and-express-connect-a-database--cms-31699
+ * How to install and config mysql global: https://linux4one.com/how-to-install-mysql-on-linux-mint-19/
  */
 const express = require('express'); // оснастка веб сервера
 const app = express();
@@ -13,10 +15,11 @@ const config = {
     database: 'mysql',
 };
 
-// Create a MySQL pool
+// Create a MySQL pool, he is allows us to use many connections at the same time,
+// rather than opening and closing them manually.
 const pool = mysql.createPool(config);
 
-// сервер для http://localhost:8081/
+// Server http://localhost:8081/
 const server = app.listen(8081, function () {
     const host = server.address().address;
     const port = server.address().port;
