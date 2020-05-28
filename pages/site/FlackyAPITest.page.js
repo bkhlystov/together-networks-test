@@ -31,27 +31,21 @@ class FlackyAPITest extends Test {
     }
 
     checkUpdatedUserInResponse(response) {
-	    console.log('response.id ', response.id);
-	    const id = (response && response.id) ? response.id : '';
 
-        expect(this.storage['user_id'] === id).to.equal(
+        expect(this.storage['user_id'] == response.id).to.equal(
             true,
             "There is no updated user id in response"
         );
     }
 
     checkDeletedUserInResponse(response) {
-        const id = (response && response.id) ? response.id : '';
-
-        expect(this.storage['user_id'] === id).to.equal(
+        expect(this.storage['user_id'] == response.id).to.equal(
             true,
             "There is no deleted user id in response"
         );
     }
 
 	apiTest(action, url) {
-		let users = null;
-
         const user = {
             name: configData.store.user.name,
             email: configData.store.user.email
