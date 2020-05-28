@@ -1,40 +1,30 @@
 /**
  * Created by bohdan on 27.05.2020.
  */
-var express = require('express'); // оснастка веб сервера
-var app = express();
-var sql = require('mysql'); // клиент для MS SQL Server
+const express = require('express'); // оснастка веб сервера
+const app = express();
+const mysql = require('mysql');
 
-// строка для подключения к базе данных.
-var sqlConfig = {
+// Set database connection credentials
+const config = {
+    host: 'localhost',
     user: 'root',
-    password: 'qwertyu',
-    server: 'localhost',
-    database: 'root'
+    password: 'root',
+    database: 'mysql',
 };
 
 // Create a MySQL pool
-const pool = sql.createPool(sqlConfig);
+const pool = mysql.createPool(config);
 
 // сервер для http://localhost:8081/
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+const server = app.listen(8081, function () {
+    const host = server.address().address;
+    const port = server.address().port;
 
-    console.log("сервер доступен по url http://%s:%s", host, port);
+    console.log("server allow to url example http://localhost:", host, port, '/users');
 });
 
-// app.get('/sales', function (req, res) {
-//     sql.createPool(sqlConfig, function() {
-//         var request = new sql.Request();
-//         request.query('select * from sales', function(err, resp) {
-//             if(err) console.log(err);
-//             res.json(resp.recordset); // результат в формате JSON
-//             sql.close(); // закрываем соединение с базой данных
-//         });
-//     });
-// });
-
+// Display all users
 app.get('/users', (request, response) => {
     pool.query('SELECT * FROM users', (error, result) => {
         if (error) throw error;
@@ -43,26 +33,44 @@ app.get('/users', (request, response) => {
     });
 });
 
-// app.get('/sales/:id', function (req, res) {
-//     sql.connect(sqlConfig, function() {
-//         var request = new sql.Request();
-//         request.input('input_parameter', sql.Int, Number(req.params.id)) // защита от SQL-инъекций и преобразование к числовому типу
-//             .query('select * from sales where id = @input_parameter', function(err, resp) {
-//                 if(err) console.log(err);
-//                 res.json(resp.recordset); // результат в формате JSON
-//                 sql.close(); // закрываем соединение с базой данных
-//             });
-//     });
-// });
-//
-// app.post('/sales/:id/invoices', function (req, res) {
-//     sql.connect(sqlConfig, function() {
-//         var request = new sql.Request();
-//         request.input('idSales', sql.Int, Number(req.params.id)) // защита от SQL-инъекций
-//             .execute('addInvoices', function(err, resp, returnValue, affected) {
-//                 if(err) console.log(err);
-//                 res.json(resp.recordset); // результат в формате JSON
-//                 sql.close(); // закрываем соединение с базой данных
-//             });
-//     });
-// });
+// Display a single user by ID
+app.get('/users/:id', (request, response) => {
+    const id = request.params.id;
+
+    pool.query('SELECT * FROM users WHERE id = ?', id, (error, result) => {
+        if (error) throw error;
+
+        response.send(result);
+    });
+});
+
+// Add a new user
+app.post('/users', (request, response) => {
+    pool.query('INSERT INTO users SET ?', request.body, (error, result) => {
+        if (error) throw error;
+
+        response.status(201).send(`User added with ID: ${result.insertId}`);
+    });
+});
+
+// Update an existing user
+app.put('/users/:id', (request, response) => {
+    const id = request.params.id;
+
+    pool.query('UPDATE users SET ? WHERE id = ?', [request.body, id], (error, result) => {
+        if (error) throw error;
+
+        response.send('User updated successfully.');
+    });
+});
+
+// Delete a user
+app.delete('/users/:id', (request, response) => {
+    const id = request.params.id;
+
+    pool.query('DELETE FROM users WHERE id = ?', id, (error, result) => {
+        if (error) throw error;
+
+        response.send('User deleted.');
+    });
+});
