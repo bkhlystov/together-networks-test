@@ -29,17 +29,19 @@ module.exports = (url, method, body) => {
 
 		http.open(method, url, true);
 
-        http.setRequestHeader("content-type", "application/json");
+
 
 		switch (method) {
 			case 'GET':
 				http.send(null);
 				break;
 			case 'POST':
+                http.setRequestHeader("content-type", "application/json");
 				console.log('body ', body);
 				http.send(body);
 				break;
             case 'PUT':
+                http.setRequestHeader("content-type", "application/json");
                 http.send(body);
                 break;
             case 'DELETE':
