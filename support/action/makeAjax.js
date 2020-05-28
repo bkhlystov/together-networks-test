@@ -7,7 +7,7 @@
  */
 module.exports = (url, method, body) => {
 	let _method = method || 'GET';
-	let _body = (_method === 'GET') ? formatParams( body ) : JSON.stringify(body);
+	let _body = (_method === 'GET' && body && Object.keys(body).length) ? formatParams( body ) : body;
 	let _url = (_body && _method === 'GET') ? url + "?" + _body : url;
 
 	function formatParams( body ){
