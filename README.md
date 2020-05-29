@@ -37,7 +37,7 @@ More details:
 All tests for site:
 
 ```
-npm run test.site
+npm run test.desktop.site
 ``` 
 
 Run single test

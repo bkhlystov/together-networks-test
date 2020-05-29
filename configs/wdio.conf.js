@@ -7,11 +7,7 @@ exports.config = {
         desktop: [
             './features/desktop/**/*.feature',
         ],
-	    desktop_queue: [
-		    './features/desktop/GeneralCustomerCheckoutProcess.feature',
-		    './features/desktop/WholesalerCheckoutProcess.feature',
-		    './features/desktop/CrmOrders.feature'
-	    ]
+	    desktop_queue: []
     },
     exclude: [],
     maxInstances: 1,

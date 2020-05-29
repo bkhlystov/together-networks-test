@@ -21,52 +21,6 @@ module.exports = {
 		updated_user: {
             name: "John Dir",
             email: "test-email@exemple.com",
-		},
-		customer: {
-			wholesale_customer: {
-				fname: 'Wholesaler',
-				lname: 'Test Customer',
-				email: "bx-s2u-qa+wholesaler@4ib.com"
-			},
-			general_customer: {
-				fname: 'General',
-				lname: 'Test Customer',
-				email: "bx-s2u-qa+general+customer@4ib.com"
-			},
-			address: {
-				country_id: {
-					option: 'United States'
-				},
-				state_id: {
-					option: 'New York'
-				},
-				city: 'The Bronx',
-				zip: '10457',
-				street_address: '544 East 171st Street',
-				street_address1: '47',
-				company: 'Bullion Exchange',
-				phone: '+16505388633'
-			},
-			card: {
-				name_as_printed: 'Matthew Perry',
-				card_number: '4111111111111111',
-				expiration_year: {
-					option: '25'
-				},
-				expiration_month: '12',
-				cvv: '123'
-			}
 		}
-	},
-    emailCredentials: {
-        "...": {
-            password: "...",
-            host: 'imap.gmail.com',
-            port: 993,
-            tls: true,
-            tlsOptions: {
-                rejectUnauthorized: false
-            }
-        }
-    }
+	}
 };
