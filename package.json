@@ -28,7 +28,7 @@
     "chai-webdriverio": "^1.0.0",
     "chromedriver": "^76.0.1",
     "deepmerge": "^4.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "imap-simple": "^4.3.0",
     "mysql": "^2.18.1",
     "quoted-printable": "^1.0.1",
